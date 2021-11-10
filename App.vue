@@ -3,7 +3,7 @@
     
     
     <div>
-    <Listing v-if="currentPage=='listing'" :products="products"  @addCart="addToCart($event)" @goToPage="goToPage($event)"/>
+    <Listing v-if="currentPage=='listing'" :cart="totalItem" :products="products"  @addCart="addToCart($event)" @goToPage="goToPage($event)"/>
     <Cart  v-if="currentPage=='cart'" :cart="cart" @goToPage="goToPage($event)"/>
     </div>
 </template>
@@ -38,13 +38,25 @@ export default {
           currency_sign: '$',
         },
       ],
-      cart:[]
+      cart:[],
+      id:0,
+      totalItem:0
     }
   },
   methods:{
     addToCart(product){
-      this.cart.push(product)
-      console.log(product)
+      let item=(this.cart.find((item)=>{
+       return  item.product_name==product.product_name
+        }))
+      if(item){
+        this.totalItem+=1
+        item.qty+=1
+      }
+      else{
+        this.id+=1
+        this.totalItem+=1
+        this.cart.push({id:this.id,product_name:product.product_name,cost:product.cost,qty:1,currency_sign:product.currency_sign})
+      }
     },
     goToPage(value){
       this.currentPage = value
