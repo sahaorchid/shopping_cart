@@ -1,10 +1,7 @@
 <template>
-    
-    
-    
     <div>
-    <Listing v-if="currentPage=='listing'" :cart="totalItem" :products="products"  @addCart="addToCart($event)" @goToPage="goToPage($event)"/>
-    <Cart  v-if="currentPage=='cart'" :cart="cart" @goToPage="goToPage($event)"/>
+    <Listing v-if="currentPage=='listing'" :cart="totalItem" :products="products"  @addCart="addToCart($event)" @goToPage="goToPage($event)" @click="total"/>
+    <Cart  v-if="currentPage=='cart'" :cart="cart" @goToPage="goToPage($event)" :Total="subTotal"/>
     </div>
 </template>
 
@@ -40,7 +37,8 @@ export default {
       ],
       cart:[],
       id:0,
-      totalItem:0
+      totalItem:0,
+      subTotal:0,
     }
   },
   methods:{
@@ -60,7 +58,14 @@ export default {
     },
     goToPage(value){
       this.currentPage = value
+    },
+    total(){
+      this.subTotal=this.cart.reduce((total,item)=>{
+        return total+=(item.cost*item.qty)
+      },0)
+
     }
+
 
   }
 }
