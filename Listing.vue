@@ -1,11 +1,11 @@
-<template>
+<template> 
   <div class="hello">
     
-        <div class="d-grid gap-2">
-            <button class="btn btn-primary" type="button" @click="cartBtnClicked">Go To Cart</button>
+    <div class="d-grid gap-2">
+            <button class="btn btn-primary" type="button" @click="cartBtnClicked">Cart {{cart}}</button>
         </div>
-        <div v-for="product in products" :key="product.product_name"> 
-        <div class="card" style="width: 18rem;">
+        <div v-for="product in products" :key="product.product_name" > 
+        <div class="card container" style="width: 18rem; display:flex" >
         <img src="" class="card-img-top" alt="">
         <div class="card-body">
             <h5 class="card-title">{{product.product_name}}</h5>
@@ -14,10 +14,6 @@
         </div>
         </div>
     </div>
-      
-      
-      
-
   </div>
 </template>
 
@@ -26,6 +22,7 @@ export default {
   name: 'Listing',
   props: {
       products:Array,
+      cart:String
   },
   data(){
       return {
@@ -33,6 +30,7 @@ export default {
   },
   methods:{
       addToCart(product){
+          console.log(this.cart)
           this.$emit("addCart",product)
       },
       cartBtnClicked(){
