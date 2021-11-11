@@ -1,4 +1,4 @@
-<template> 
+<template>  
   <div class="hello">
     
     <div class="d-grid gap-2">
@@ -13,7 +13,7 @@
             <a @click="addToCart(product)" class="btn btn-primary">Add to Cart</a>
         </div>
         </div>
-    </div>
+    </div>      
   </div>
 </template>
 
@@ -21,8 +21,8 @@
 export default {
   name: 'Listing',
   props: {
-      products:Array,
-      cart:String
+      products: Array,
+      cart: String
   },
   data(){
       return {
@@ -30,13 +30,11 @@ export default {
   },
   methods:{
       addToCart(product){
-          console.log(this.cart)
           this.$emit("addCart",product)
       },
       cartBtnClicked(){
           this.$emit("goToPage","cart")
       }
-
   }
 }
 </script>
