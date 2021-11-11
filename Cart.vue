@@ -1,7 +1,13 @@
 <template>
-  <div>
-    <div class="d-grid gap-2">
+  <div >
+    
+    
+    
+    <div class="d-grid gap-4">
             <button class="btn btn-primary" type="button" @click="productBtnClicked">Go To Products</button>
+    </div>
+        <div class="d-grid gap-4">
+            <button class="btn btn-primary" type="button" @click="checkoutBtn">Checkout</button>
     </div>
     <h1 v-if="cart.length==0" class="container">No Items in Cart</h1>
 
@@ -27,8 +33,12 @@
         
     </tbody>
     </table>
-    <h1 >SubTotal:{{Total}}</h1>
+    <h1 >SubTotal:{{subTotal}}</h1>
 </div>
+      
+      
+      
+
   </div>
 </template>
 
@@ -41,16 +51,26 @@ export default {
   },
   data(){
       return {
-          subTotal:0,
+          subTotal:0
+          
       }
   },
   methods:{
       productBtnClicked(){
           this.$emit("goToPage","listing")
+      },
+      checkoutBtn(){
+          this.$emit("goToPage","checkout")
       }
 
 
-  }
+  },
+created:function(){
+    this.subTotal=this.cart.reduce((total,item)=>{
+            return total+=(item.cost*item.qty)
+      },0)
+    }
+  
 }
 </script>
 <style>
