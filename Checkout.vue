@@ -20,21 +20,24 @@
   </div>
 </form>
       
-      
+  <Success v-if="value"/>
 
   </div>
 </template>
 
 <script>
+
 export default {
   name: 'Checkout',
+
   props: {
   },
   data(){
       return {
           name:null,
           email:null,
-          address:null
+          address:null,
+          value:false
           
       }
   },
@@ -42,6 +45,8 @@ export default {
       dataSubmit(e){
           e.preventDefault();
           alert(`Name:${this.name},Email:${this.email},Address:${this.address}`)
+          this.$emit("goToPage","success")
+          this.$emit("userData",{Name:this.name,Email:this.email,Address:this.address})
       }
 
 
