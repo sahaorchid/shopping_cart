@@ -6,7 +6,7 @@
     <div class="d-grid gap-4">
             <button class="btn btn-primary" type="button" @click="productBtnClicked">Go To Products</button>
     </div>
-        <div class="d-grid gap-4">
+        <div class="d-grid gap-4" v-if="cart.length!=0">
             <button class="btn btn-primary" type="button" @click="checkoutBtn">Checkout</button>
     </div>
     <h1 v-if="cart.length==0" class="container">No Items in Cart</h1>
