@@ -1,19 +1,25 @@
 <template>
+    
+    
+    
     <div>
     <Listing v-if="currentPage=='listing'" :cart="totalItem" :products="products"  @addCart="addToCart($event)" @goToPage="goToPage($event)" @click="total"/>
     <Cart  v-if="currentPage=='cart'" :cart="cart" @goToPage="goToPage($event)" :Total="subTotal"/>
+    <Checkout v-if="currentPage=='checkout'"/>
     </div>
 </template>
 
 <script>
 import Listing from './components/Listing.vue'
 import Cart from './components/Cart.vue'
+import Checkout from './components/Checkout.vue'
 
 export default {
   name: 'App',
   components: {
     Listing,
-    Cart
+    Cart,
+    Checkout
   },
   data(){
     return {
