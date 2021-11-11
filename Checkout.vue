@@ -13,20 +13,14 @@
     <label for="inputAddress" class="form-label">Address</label>
     <input type="text" class="form-control" id="inputAddress" name="address" v-model="address" >
   </div>
-
-
   <div class="col-12">
     <button type="submit" class="btn btn-primary" >Place Order</button>
   </div>
-</form>
-      
-  <Success v-if="value"/>
-
+</form>    
   </div>
 </template>
 
 <script>
-
 export default {
   name: 'Checkout',
 
@@ -34,11 +28,10 @@ export default {
   },
   data(){
       return {
-          name:null,
-          email:null,
-          address:null,
-          value:false
-          
+          name: null,
+          email: null,
+          address: null,
+          value: false      
       }
   },
   methods:{
@@ -48,14 +41,9 @@ export default {
           this.$emit("goToPage","success")
           this.$emit("userData",{Name:this.name,Email:this.email,Address:this.address})
       }
-
-
-  },
-  
+  },  
 }
 </script>
-<style>
 
-</style>
 
 
