@@ -1,8 +1,5 @@
 <template>
   <div >
-    
-    
-    
     <div class="d-grid gap-4">
             <button class="btn btn-primary" type="button" @click="productBtnClicked">Go To Products</button>
     </div>
@@ -13,7 +10,6 @@
 
 <!-- table -->
 <div v-else>
-
     <table class="table table-striped table-hover">
     <thead>
         <tr>
@@ -29,16 +25,11 @@
         <td>{{product.currency_sign}}{{product.cost}}</td>
         <td>{{product.qty}}x</td>
         <td>{{product.cost*product.qty}}</td>
-        </tr>
-        
+        </tr>      
     </tbody>
     </table>
     <h1 >SubTotal:{{subTotal}}</h1>
 </div>
-      
-      
-      
-
   </div>
 </template>
 
@@ -46,13 +37,12 @@
 export default {
   name: 'Cart',
   props: {
-      cart:Array,
-      Total:String
+      cart: Array,
+      Total: String
   },
   data(){
       return {
-          subTotal:0
-          
+          subTotal: 0    
       }
   },
   methods:{
@@ -62,19 +52,13 @@ export default {
       checkoutBtn(){
           this.$emit("goToPage","checkout")
       }
-
-
   },
 created:function(){
-    this.subTotal=this.cart.reduce((total,item)=>{
-            return total+=(item.cost*item.qty)
+    this.subTotal = this.cart.reduce((total,item)=>{
+            return total+= (item.cost*item.qty)
       },0)
-    }
-  
+    } 
 }
 </script>
-<style>
-
-</style>
 
 
